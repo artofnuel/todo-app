@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="css/main.css">
+  
+  <title>Emmanuel Inua | Todo app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+
+<body id="todo">
+  <section class="max-w-full font-jose mx-auto mb-10 h-screen bg-veryLightGray dark:bg-dVeryDarkBlue">
+    <!-- flex container -->
+    <div class="container flex flex-col max-w-full">
+      <!-- background image-->
+      <div class="hero-bkg w-full dark:hidden">
+        <img class="w-full h-full md:hidden" src="images/bg-mobile-light.jpg" alt="">   
+        <img class="w-full h-full md:block hidden" src="images/bg-desktop-light.jpg" alt="">   
+      </div>
+      <div class="hidden hero-bkg w-full dark:flex">
+        <img class="w-full h-full md:hidden" src="images/bg-mobile-dark.jpg" alt="">   
+        <img class="w-full h-full md:block hidden" src="images/bg-desktop-dark.jpg" alt="">   
+      </div>
+      <!-- Todo Area -->
+      <div class="container flex flex-col space-y-4 z-10 mx-auto -mt-40 md:-mt-48">
+          <!-- headings -->
+        <div class="flex items-center max-w-3xl justify-between w-11/12 md:w-1/2 mx-auto rounded-lg z-10">
+          <h1 class="text-4xl text-white">TODO</h1>
+          <button id="toggle" onclick="toggleDark()">
+            <img src="images/icon-sun.svg" alt="" class="w-6 h-6 dark:hidden">
+            <img src="images/icon-moon.svg" alt="" class="hidden w-6 h-6 dark:block">
+          </button>
+        </div>
+        <!-- Todo List -->
+        <div class="flex flex-col space-y-5">
+          <!-- Input Field -->
+          <div class="flex flex-col justify-between w-11/12 mx-auto rounded-lg bg-white  md:w-1/2  dark:bg-dVeryDesatBlue">
+            <form>
+              <div class="flex space-x-3 items-center p-3">
+                <button class="todo-toggle border-2 w-6 h-6 rounded-full flex justify-center items-center md:w-8 md:h-8 dark:border-dVeryDarkGreyBlue2">
+                  <img src="images/icon-check.svg" alt="" class="w-1/2">
+                </button>
+                <input id="inputField" type="text" class="text-veryDarkGreyBlue dark:text-dLightGreyBlue py-2 w-4/5 rounded-full text-lg bg-transparent focus:outline-none" placeholder="Add to your list">
+              </div>
+            </form>
+          </div>
+          <!-- List items -->
+            <!-- The Created List -->
+           <div class="drop-shadow-xl">
+            <ul class="flex flex-col justify-between w-11/12 mx-auto rounded-t-lg bg-white md:w-1/2 dark:bg-dVeryDesatBlue">
+              <!-- List 1 -->
+              <div class="eachlist">
+                <li class="flex justify-between items-center p-3 py-4 text-md text-veryDarkGreyBlue dark:text-dLightGreyBlue">
+                  <div class="flex items-center">
+                    <button class="todo-toggle mr-3 border-2 w-6 h-6 rounded-full flex justify-center items-center hover:bg-gradient-to-r from-grade1 to-grade2 md:w-8 md:h-8 dark:border-dVeryDarkGreyBlue2">
+                      <img src="images/icon-check.svg" alt="" class="w-1/2">
+                    </button>
+                    Add dynamic number items left
+                  </div>
+                  <button id="todoo" class="todo-toggle w-6 h-6 rounded-full flex justify-center items-center md:w-8 md:h-8 dark:border-dVeryDarkGreyBlue2">
+                    <img src="images/icon-cross.svg" alt="" class="w-1/2">
+                  </button>
+                </li>
+                <hr class="border-veryLightGreyBlue dark:border-dDarkGreyBlue">
+              </div>
+              <!-- List 2 -->
+              <div class="eachlist">
+                <li class="flex justify-between items-center p-3 py-4 text-md text-veryDarkGreyBlue dark:text-dLightGreyBlue">
+                  <div class="flex items-center">
+                    <button class="todo-toggle mr-3 border-2 w-6 h-6 rounded-full flex justify-center items-center hover:bg-gradient-to-r from-grade1 to-grade2 md:w-8 md:h-8 dark:border-dVeryDarkGreyBlue2">
+                      <img src="images/icon-check.svg" alt="" class="w-1/2">
+                    </button>
+                    Add dynamic number items left
+                  </div>
+                  <button class="delList todo-toggle w-6 h-6 rounded-full flex justify-center items-center md:w-8 md:h-8 dark:border-dVeryDarkGreyBlue2">
+                    <img src="images/icon-cross.svg" alt="" class="w-1/2">
+                  </button>
+                </li>
+                <hr class="border-veryLightGreyBlue dark:border-dDarkGreyBlue">
+              </div>
+             </ul>
+             <!-- Items Left and Clear Completed -->
+             <div class="text-lightGreyBlue dark:text-dLightGreyBlue flex items-center justify-between w-11/12 mx-auto p-3 py-4 rounded-b-lg bg-white md:w-1/2  dark:bg-dVeryDesatBlue">
+              <h2 class="text-sm md:text-md">5 items left</h2>
+              <!-- This should be hidden on smaller screens visble on larger ones -->
+              <div class="hidden items-center justify-center space-x-6 md:flex">
+                <a href="" id="All" class="text-brightBlue text-sm font-bold">All</a>
+                <a href="" id="Active" class="text-dLightGreyBlue text-sm font-bold">Active</a>
+                <a href="" id="Completed" class="text-dLightGreyBlue text-sm font-bold">Completed</a>
+              </div>
+              <h2 class="text-sm md:text-md">Clear Completed</h2>
+             </div>
+           </div>
+        </div>
+        <div class="flex items-center justify-center space-x-6 w-11/12 mx-auto p-3 py-4 rounded-lg drop-shadow-lg bg-white md:hidden md:w-1/2 dark:bg-dVeryDesatBlue">
+          <a href="" id="All" class="text-brightBlue text-md font-bold">All</a>
+          <a href="" id="Active" class="text-dLightGreyBlue text-md font-bold">Active</a>
+          <a href="" id="Completed" class="text-dLightGreyBlue text-md font-bold">Completed</a>
+        </div>
+        <div class="flex items-center justify-center mt-5">
+          <h3 class="text-dDarkGreyBlue">
+            Drag and drop to reorder list
+          </h3>
+        </div>
+      </div>
+  </section>
+  <script src="js/index.js"></script>
+
+  <div class="attribution mx-auto my-10">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://github.com/artofnuel">Emmanuel Inua</a>.
+  </div>
+</body>
+</html>
