@@ -12,11 +12,13 @@ const inputLength = function() {
 }
 
 const addList = function(event) {
-    if (inputLength == 0) {
-        alert("Type something")
+    if (inputLength() > 0 && event.code == "Enter") {
+        createList();
     }
-    else if (inputLength > 0 && event.code == "Enter") {
-        theList.innerHTML += `
+}
+
+const createList = function() {
+    theList.innerHTML += `
         <!-- List 1 -->
             <div class="eachlist flex flex-col justify-between w-11/12 mx-auto rounded-t-lg bg-white md:w-1/2 dark:bg-dVeryDesatBlue">
                 <div class="flex justify-between items-center p-3 py-4 text-md text-veryDarkGreyBlue dark:text-dLightGreyBlue">
@@ -32,9 +34,10 @@ const addList = function(event) {
                 </div>
                 <hr class="border-veryLightGreyBlue dark:border-dDarkGreyBlue">
             </div>
-        `;
-    }
+    `;
 }
+
+input.addEventListener("keypress", addList);
 
 var del = document.querySelectorAll('.delList');
 for(var i=0; i<del.length; i++){
